@@ -1,0 +1,12 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "quantaleap-homepage": {
+      "appLocation": "build",
+      "appBuildCommand": "npm run build",
+      "outputLocation": "build",
+      "env": "preview",
+      "verbose": "silly"
+    }
+  }
+}
