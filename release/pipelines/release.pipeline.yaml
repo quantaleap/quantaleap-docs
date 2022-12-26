@@ -156,7 +156,8 @@ stages:
                   --secret `
                   --org https://dev.azure.com/quantaleap `
                   --project "Product Development" > $null
-                } catch {
+                } 
+                catch {
                   Write-Error $_
                 }
       - job: PublishCode
@@ -183,9 +184,9 @@ stages:
             inputs:
               deployment_environment: "development"
               production_branch: main
-              workingDirectory: $(Pipeline.Workspace)
+              workingDirectory: $(Pipeline.Workspace)/html
               app_location: $(appLocation)
-              config_file_location: "/"
+              config_file_location: $(appLocation)
               skip_app_build: true
               skip_api_build: true
               is_static_export: true
@@ -261,10 +262,9 @@ stages:
                     AZURE_SUBSCRIPTION_ID: "$(subscription)"
                     AZURE_REGION_LOCATION: "$(location)"
                   inputs:
-                    workingDirectory: $(Pipeline.Workspace)
+                    workingDirectory: $(Pipeline.Workspace)/html
                     app_location: $(appLocation)
-                    api_build_command: "npm install"
-                    config_file_location: "/"
+                    config_file_location: $(appLocation)
                     skip_app_build: true
                     skip_api_build: true
                     is_static_export: true
