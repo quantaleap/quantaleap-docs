@@ -2,22 +2,18 @@ trigger: none
 
 resources:
   repositories:
-    - repository: quantaleap-homepage
+    - repository: quantaleap-docs
       type: github
       endpoint: quantaleap
-      name: quantaleap/quantaleap-homepage
+      name: quantaleap/quantaleap-docs
       ref: main
 
 pool:
   vmImage: "ubuntu-latest"
 
 parameters:
-  - name: htmlversion
-    displayName: HTML version (required)
-    type: string
-    default: latest
-  - name: functionversion
-    displayName: Function version (required)
+  - name: version
+    displayName: Artifact version (required)
     type: string
     default: latest
   - name: publish
@@ -42,18 +38,12 @@ parameters:
     default: quantaleap-bot
 
 variables:
-  - name: env_htmlFolder
-    value: "$(Pipeline.Workspace)/html"
-  - name: env_functionFolder
-    value: "$(Pipeline.Workspace)/functionapp"
-  - name: env_testFolder
-    value: "$(Pipeline.Workspace)/test"
   - name: cmdb_applicationRepository
-    value: "https://github.com/quantaleap/quantaleap-homepage"
+    value: "https://github.com/quantaleap/quantaleap-docs"
   - name: cmdb_applicationName
-    value: "quantaleap.homepage"
+    value: "quantaleap.docs"
   - name: cmdb_applicationDescription
-    value: "This project contains resources for the quantaleap.eu website"
+    value: "This project contains resources for the docs.quantaleap.eu website"
   - name: cmdb_applicationOwner
     value: "laure.kamalandua@quantaleap.eu"
 
@@ -76,7 +66,7 @@ stages:
               resourceGroupName: "$(resourcegroup)"
               location: "$(location)"
               csmFile: "$(System.DefaultWorkingDirectory)/release/templates/static.webapp.json"
-              overrideParameters: '-name "$(name)" -location "$(location)" -sku "$(sku)" -skuCode "$(skuCode)" -appLocation $(appLocation) -apiLocation $(apiLocation) -workspaceId "$(workspaceId)" -appInsightsName "$(appInsightsName)"'
+              overrideParameters: '-name "$(name)" -location "$(location)" -sku "$(sku)" -skuCode "$(skuCode)" -appLocation $(appLocation) -workspaceId "$(workspaceId)" -appInsightsName "$(appInsightsName)"'
               deploymentName: "$(Build.BuildNumber)"
           - task: AzureCLI@2
             name: tagResources
@@ -104,21 +94,13 @@ stages:
                     repository=$($tag.repository) `
                     applicationOwner=$($tag.applicationOwner) `
                     applicationName=$($tag.applicationName) `
-                    applicationDescription=$($tag.applicationDescription)
+                    applicationDescription=$($tag.applicationDescription) > $null
                 }
 
                 echo "setting environment variables"
                 $auth = (az resource show --resource-group $(resourcegroup) --name $(appInsightsName) --resource-type "microsoft.insights/components" --query "properties.InstrumentationKey")
                 az staticwebapp appsettings set --name $(name) --resource-group $(resourcegroup) --setting-names `
-                APPINSIGHTS_INSTRUMENTATIONKEY=$auth `
-                MAILCHIMP_ENDPOINT=$(MAILCHIMP_ENDPOINT) `
-                MAILCHIMP_LIST=$(MAILCHIMP_LIST) `
-                MAILCHIMP_TOKEN=$(MAILCHIMP_TOKEN) `
-                MAILCHIMP_USER=$(MAILCHIMP_USER) `
-                DEV_MAILCHIMP_ENDPOINT=$(DEV_MAILCHIMP_ENDPOINT) `
-                DEV_MAILCHIMP_LIST=$(DEV_MAILCHIMP_LIST) `
-                DEV_MAILCHIMP_TOKEN=$(DEV_MAILCHIMP_TOKEN) `
-                DEV_MAILCHIMP_USER=$(DEV_MAILCHIMP_USER)
+                APPINSIGHTS_INSTRUMENTATIONKEY=$auth > $null
           - task: AzureCLI@2
             name: updateDNS
             displayName: Update DNS
@@ -136,7 +118,7 @@ stages:
                 if (-not $dnsConfigured) {
                   Write-Warning "DNS record not configured for Azure Static Web App. Setting up record."
                   az network dns record-set a create `
-                  --name "@" --resource-group $(resourcegroupdns) `
+                  --name "docs" --resource-group $(resourcegroupdns) `
                   --zone-name $(domain) `
                   --target-resource "/subscriptions/$(subscription)/resourceGroups/$(resourcegroup)/providers/Microsoft.Web/staticSites/$(name)" `
                   --ttl 600
@@ -162,17 +144,17 @@ stages:
                 echo "##[command]az pipelines variable-group variable update"
                 echo $(System.AccessToken) | az devops login --organization https://dev.azure.com/quantaleap
                 az pipelines variable-group variable update --group-id $(id) `
-                  --name FUNCTIONAPP_URI `
+                  --name SITE_URI `
                   --value $hostName `
                   --org https://dev.azure.com/quantaleap `
-                  --project "Product Development"
+                  --project "Product Development" > $null
 
                  az pipelines variable-group variable update --group-id $(id) `
                   --name token `
                   --value $token `
                   --secret `
                   --org https://dev.azure.com/quantaleap `
-                  --project "Product Development"
+                  --project "Product Development" > $null
 
       - job: PublishCode
         displayName: Publish code
@@ -188,35 +170,22 @@ stages:
             displayName: "Copy HTML Files"
             inputs:
               buildType: specific
-              buildId: ${{ parameters.htmlversion }}
+              buildId: ${{ parameters.version }}
               project: "6206cff7-06ac-401d-988d-bf459fd9dedb"
               pipeline: $(pipelineHTML)
               artifact: html
               downloadPath: "$(Pipeline.Workspace)/html"
-          - task: DownloadPipelineArtifact@2
-            displayName: "Copy Azure Function Files"
-            inputs:
-              buildType: specific
-              buildId: ${{ parameters.functionversion }}
-              project: "6206cff7-06ac-401d-988d-bf459fd9dedb"
-              pipeline: $(pipelineFunction)
-              artifact: api
-              downloadPath: "$(Pipeline.Workspace)/api"
-          - script: docker pull mcr.microsoft.com/appsvc/staticappsclient:stable
-            displayName: "Pull latest image (SWA)"
           - task: AzureStaticWebApp@0
             displayName: "Static Web App: $(name)"
             inputs:
               deployment_environment: "development"
               production_branch: main
               workingDirectory: $(Pipeline.Workspace)
-              app_location: "/html"
-              api_location: "/api"
-              api_build_command: "npm install"
-              config_file_location: "/html"
+              app_location: $(appLocation)
+              config_file_location: "/"
               skip_app_build: true
-              skip_api_build: false
-              is_static_export: false
+              skip_api_build: true
+              is_static_export: true
               verbose: true
               azure_static_web_apps_api_token: "$(token)"
 
@@ -224,9 +193,9 @@ stages:
     dependsOn: Development
     condition: succeeded()
     jobs:
-      - job: ReviewUX
+      - job: Review
         pool: server
-        displayName: Review UI/UX
+        displayName: Review
         timeoutInMinutes: 1440
         steps:
           - task: ManualValidation@0
@@ -236,11 +205,11 @@ stages:
                 - [Product Development]\Product Development Team
                 - productdevelopment@quantaleap.eu
                 - productdevelopment@quantaleap.onmicrosoft.com
-              instructions: "Please complete the following review steps:  1. Check release for functional and/or technical shortcomings in the development environment. - 2. Verify whether release notes have been updated at ./.RELEASE.md - 3. Check whether custom domain is validated and set as default."
+              instructions: "Please complete the following review steps:  1. Check whether site is operational. - 2. Verify whether release notes have been updated at ./.RELEASE.md - 3. Check whether custom domain is validated and set as default."
               onTimeout: "reject"
       - job: CreateRelease
         displayName: Create release
-        dependsOn: ReviewUX
+        dependsOn: Review
         condition: and(succeeded(), eq('${{ parameters.publish }}', 'true'))
         steps:
           - checkout: self
@@ -276,22 +245,11 @@ stages:
                   displayName: "Copy HTML Files"
                   inputs:
                     buildType: specific
-                    buildId: ${{ parameters.htmlversion }}
+                    buildId: ${{ parameters.version }}
                     project: "6206cff7-06ac-401d-988d-bf459fd9dedb"
                     pipeline: $(pipelineHTML)
                     artifact: html
                     downloadPath: "$(Pipeline.Workspace)/html"
-                - task: DownloadPipelineArtifact@2
-                  displayName: "Copy Azure Function Files"
-                  inputs:
-                    buildType: specific
-                    buildId: ${{ parameters.functionversion }}
-                    project: "6206cff7-06ac-401d-988d-bf459fd9dedb"
-                    pipeline: $(pipelineFunction)
-                    artifact: api
-                    downloadPath: "$(Pipeline.Workspace)/api"
-                - script: docker pull mcr.microsoft.com/appsvc/staticappsclient:stable
-                  displayName: "Pull latest image (SWA)"
                 - task: AzureStaticWebApp@0
                   displayName: "Static Web App: $(name)"
                   env:
@@ -301,13 +259,12 @@ stages:
                     AZURE_REGION_LOCATION: "$(location)"
                   inputs:
                     workingDirectory: $(Pipeline.Workspace)
-                    app_location: "/html"
-                    api_location: "/api"
+                    app_location: $(appLocation)
                     api_build_command: "npm install"
-                    config_file_location: "/html"
+                    config_file_location: "/"
                     skip_app_build: true
-                    skip_api_build: false
-                    is_static_export: false
+                    skip_api_build: true
+                    is_static_export: true
                     verbose: true
                     azure_static_web_apps_api_token: "$(token)"
                     production_branch: main
