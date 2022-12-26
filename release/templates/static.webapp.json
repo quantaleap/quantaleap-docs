@@ -54,7 +54,7 @@
         "Flow_Type": "Bluefield",
         "Application_Type": "web",
         "RetentionInDays": 30,
-        "WorkspaceResourceId": "[resourceId('Microsoft.Operationalinsights/workspaces', parameters('workspaceId'))]",
+        "WorkspaceResourceId": "[parameters('workspaceId')]",
         "IngestionMode": "LogAnalytics",
         "publicNetworkAccessForIngestion": "Enabled",
         "publicNetworkAccessForQuery": "Enabled"
