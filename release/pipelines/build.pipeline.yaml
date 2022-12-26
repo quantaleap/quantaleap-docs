@@ -2,17 +2,11 @@ trigger:
   branches:
     include:
       - main
-  paths:
-    include:
-      - "docs/*"
 
 pr:
   branches:
     include:
       - "*"
-  paths:
-    include:
-      - "docs/*"
 
 pool:
   vmImage: "ubuntu-latest"
