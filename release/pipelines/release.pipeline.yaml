@@ -233,7 +233,7 @@ stages:
     jobs:
       - deployment: PublishCode
         displayName: Publish code
-        environment: quantaleap-homepage-production
+        environment: quantaleap-docs-production
         strategy:
           runOnce:
             deploy:
