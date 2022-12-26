@@ -6,6 +6,22 @@
 
 @import url(fragments.css);
 
+/* Spacing utilities */
+
+.min-vh-100 {
+  min-height: 70vh !important;
+}
+
+.hero {
+  color: var(--grey-900);
+  background-color: var(--grey-100);
+}
+
+[data-theme='dark'] .hero {
+  color: #fff;
+  background-color: #0a141c;
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-font-size-base: 16px;

@@ -102,28 +102,6 @@ stages:
                 az staticwebapp appsettings set --name $(name) --resource-group $(resourcegroup) --setting-names `
                 APPINSIGHTS_INSTRUMENTATIONKEY=$auth > $null
           - task: AzureCLI@2
-            name: updateDNS
-            displayName: Update DNS
-            inputs:
-              azureSubscription: "quantaleap production"
-              scriptType: pscore
-              scriptLocation: inlineScript
-              failOnStandardError: true
-              inlineScript: |
-                $dnsConfigured = (az network dns record-set a list `
-                --resource-group $(resourcegroupdns) `
-                --zone-name $(domain) `
-                | ConvertFrom-Json ).targetResource.id -like "*$(name)" ? $true : $false
-
-                if (-not $dnsConfigured) {
-                  Write-Warning "DNS record not configured for Azure Static Web App. Setting up record."
-                  az network dns record-set a create `
-                  --name "docs" --resource-group $(resourcegroupdns) `
-                  --zone-name $(domain) `
-                  --target-resource "/subscriptions/$(subscription)/resourceGroups/$(resourcegroup)/providers/Microsoft.Web/staticSites/$(name)" `
-                  --ttl 600
-                }
-          - task: AzureCLI@2
             name: setToken
             displayName: "Save deployment token"
             inputs:
