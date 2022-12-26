@@ -50,7 +50,7 @@ variables:
 stages:
   - stage: Development
     variables:
-      - group: quantaleap-homepage
+      - group: quantaleap-docs
     jobs:
       - job: DeployInfrastructure
         displayName: Deploy infrastructure
@@ -229,7 +229,7 @@ stages:
     dependsOn: Acceptance
     condition: succeeded()
     variables:
-      - group: quantaleap-homepage
+      - group: quantaleap-docs
     jobs:
       - deployment: PublishCode
         displayName: Publish code
