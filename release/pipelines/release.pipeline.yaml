@@ -133,29 +133,32 @@ stages:
               failOnStandardError: false
               inlineScript: |
                 $token = ((az staticwebapp secrets list --name $(name) --subscription $(subscription)) | ConvertFrom-Json).properties.apiKey
-                echo "updated app deployment settings"
                 echo "##vso[task.setvariable variable=token;isOutput=true;]$token"
+                echo "updated app deployment settings"
 
                 echo "##[command]az staticwebapp environment list"
-                $hostName = ((az staticwebapp environment list --name $(name) --subscription $(subscription) | ConvertFrom-Json).Where{$_.buildId -eq "development"}).hostName
+                $hostName = ((az staticwebapp environment list --name $(name) --subscription $(subscription) | ConvertFrom-Json).Where{$_.buildId -eq "default"}).hostName
 
                 echo "updated pipeline environment variables"
 
                 echo "##[command]az pipelines variable-group variable update"
                 echo $(System.AccessToken) | az devops login --organization https://dev.azure.com/quantaleap
-                az pipelines variable-group variable update --group-id $(id) `
-                  --name SITE_URI `
-                  --value $hostName `
-                  --org https://dev.azure.com/quantaleap `
-                  --project "Product Development" > $null
+                try {
+                  az pipelines variable-group variable update --group-id $(id) `
+                    --name SITE_URI `
+                    --value $hostName `
+                    --org https://dev.azure.com/quantaleap `
+                    --project "Product Development" > $null
 
-                 az pipelines variable-group variable update --group-id $(id) `
+                  az pipelines variable-group variable update --group-id $(id) `
                   --name token `
                   --value $token `
                   --secret `
                   --org https://dev.azure.com/quantaleap `
                   --project "Product Development" > $null
-
+                } catch {
+                  Write-Error $_
+                }
       - job: PublishCode
         displayName: Publish code
         dependsOn: DeployInfrastructure
