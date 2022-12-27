@@ -1,6 +1,9 @@
 :root {
   --transparent: transparent;
   --white: #fff;
+  --black: #000;
+  --grey-1000: #23282d;
+  --grey-950: #18191c;
   --grey-900: #23263b;
   --grey-800: #36395a;
   --grey-700: #484c7a;
