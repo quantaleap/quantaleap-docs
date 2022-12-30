@@ -6,10 +6,10 @@ trigger:
 pr:
   branches:
     include:
-      - "*"
+      - '*'
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 variables:
   # Environment variables for the pipeline job
@@ -48,10 +48,10 @@ jobs:
           mkdir -p $directory/
           cp -v -r build/. $directory/
           cp staticwebapp.config.json $directory/
-        displayName: "Copy files"
+        displayName: 'Copy files'
         workingDirectory: $(Build.SourcesDirectory)
       - task: PublishPipelineArtifact@1
         displayName: Store build artifacts
         inputs:
-          targetPath: "$(Build.StagingDirectory)/html/"
-          artifactName: "html"
+          targetPath: '$(Build.StagingDirectory)/html/'
+          artifactName: 'html'

@@ -24,7 +24,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en']
   },
 
   presets: [
@@ -37,22 +37,22 @@ const config = {
           lastVersion: '1.0.0',
           versions: {
             current: {
-              label: 'draft',
-            },
+              label: 'draft'
+            }
           },
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
-          showLastUpdateTime: true,
+          showLastUpdateTime: true
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/custom.css')
         },
         googleAnalytics: {
           trackingID: 'UA-138905008-1',
-          anonymizeIP: false,
-        },
-      }),
-    ],
+          anonymizeIP: false
+        }
+      })
+    ]
   ],
 
   themeConfig:
@@ -61,31 +61,31 @@ const config = {
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: false,
-        respectPrefersColorScheme: false,
+        respectPrefersColorScheme: false
       },
       navbar: {
         logo: {
           alt: 'Quantaleap Logo',
           src: 'img/logo-light.png',
-          srcDark: 'img/logo-dark.png',
+          srcDark: 'img/logo-dark.png'
         },
         items: [
           {
             type: 'doc',
             docId: 'welcome',
             position: 'left',
-            label: 'Docs',
+            label: 'Docs'
           },
           {
             type: 'docsVersionDropdown',
-            position: 'right',
+            position: 'right'
           },
           {
             href: 'https://github.com/quantaleap',
             className: 'pseudo-icon github-icon',
-            position: 'right',
-          },
-        ],
+            position: 'right'
+          }
+        ]
       },
       footer: {
         style: 'dark',
@@ -95,38 +95,58 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/getting-started',
-              },
-            ],
+                to: '/getting-started'
+              }
+            ]
           },
           {
             title: 'Community',
             items: [
               {
-                label: 'Discord',
-                to: 'https://discord.gg/r79rftjRPy',
+                label: 'Reddit',
+                to: 'https://reddit/r/quantaleap'
               },
-            ],
+              {
+                label: 'Discord',
+                to: 'https://discord.gg/r79rftjRPy'
+              }
+            ]
           },
           {
             title: 'More',
             items: [
               {
                 label: 'Blog',
-                to: 'https://blog.quantaleap.eu',
+                to: 'https://blog.quantaleap.eu'
               },
               {
                 label: 'GitHub',
-                to: 'https://github.com/quantaleap',
-              },
-            ],
+                to: 'https://github.com/quantaleap'
+              }
+            ]
           },
+          {
+            title: 'Systems',
+            items: [
+              {
+                html: `<iframe 
+                src="https://quantaleap.instatus.com/embed-status/b778cf87/dark-sm" 
+                width="230" 
+                height="61" 
+                frameBorder="0" 
+                scrolling="no" 
+                style="border: none;"
+              >
+              </iframe>`
+              }
+            ]
+          }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Quantaleap. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Quantaleap. Built with Docusaurus.`
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        darkTheme: darkCodeTheme
       },
       algolia: {
         // The application ID provided by Algolia
@@ -147,11 +167,11 @@ const config = {
         searchParameters: {},
 
         // Optional: path for search page that enabled by default (`false` to disable it)
-        searchPagePath: 'search',
+        searchPagePath: 'search'
 
         //... other Algolia params
-      },
-    }),
+      }
+    })
 }
 
 module.exports = config
