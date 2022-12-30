@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Quantaleap',
-  tagline: 'The cloud-native IT operations platform',
+  tagline: 'The Cloud-Native IT operations platform',
   url: 'https://quantaleap.eu',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -33,11 +33,21 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          // enable "Edit page" feature
+          editUrl: (permalink) => {
+            const baseUrl = 'https://github.com/quantaleap/quantaleap-docs'
+            if (permalink.version !== 'current') {
+              return `${baseUrl}/tree/main/docs/${permalink.docPath}`
+            } else {
+              return baseUrl
+            }
+          },
           routeBasePath: '/',
           lastVersion: '1.0.0',
           versions: {
             current: {
-              label: 'draft'
+              path: '/preview',
+              label: 'preview'
             }
           },
           sidebarPath: require.resolve('./sidebars.js'),
@@ -77,6 +87,11 @@ const config = {
             label: 'Docs'
           },
           {
+            to: `/tags`,
+            label: 'Topics',
+            position: 'left'
+          },
+          {
             type: 'docsVersionDropdown',
             position: 'right'
           },
@@ -86,6 +101,11 @@ const config = {
             position: 'right'
           }
         ]
+      },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true
+        }
       },
       footer: {
         style: 'dark',
@@ -104,7 +124,7 @@ const config = {
             items: [
               {
                 label: 'Reddit',
-                to: 'https://reddit/r/quantaleap'
+                to: 'https://reddit.com/r/quantaleap'
               },
               {
                 label: 'Discord',

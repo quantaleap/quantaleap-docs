@@ -2,6 +2,8 @@
 title: 'Getting started'
 sidebar_label: 'Getting Started'
 sidebar_position: 2
+tags:
+  - RTFM
 ---
 
 This guide will walk you through getting started with Quantaleap. By the end of this guide, you'll have set up your environment and created your first workflow.

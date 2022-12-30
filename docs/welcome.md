@@ -1,5 +1,5 @@
 ---
-title: 'Why Quantaleap'
+title: 'Welcome to Quantaleap'
 sidebar_label: 'Welcome'
 sidebar_position: 1
 ---
