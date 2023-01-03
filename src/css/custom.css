@@ -6,6 +6,13 @@
 
 @import url(fragments.css);
 
+/* Themed images according to Github Markdown spec */
+
+[data-theme="light"] img[src$="#gh-dark-mode-only"],
+[data-theme="dark"] img[src$="#gh-light-mode-only"] {
+  display: none;
+}
+
 /* Spacing utilities */
 
 .min-vh-100 {
