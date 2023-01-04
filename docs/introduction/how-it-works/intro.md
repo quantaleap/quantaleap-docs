@@ -19,7 +19,7 @@ At its heart, Quantaleap is a system for building and running `workflows`. A ser
 ![Quantaleap Architecture](drawing/design-dark.svg#gh-dark-mode-only)
 
 :::tip tip
-If you're familiar with serverless platforms (i.e. Microsoft Azure Functions/Logic Apps, AWS Lambda), you'll be up and running in no time. Alongside scheduled and webhook triggers, Quantaleap will allow you to trigger workflows based on Machine Learning insights.
+If you're familiar with serverless platforms ([Microsoft Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)/[Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview), [AWS Lambda](https://aws.amazon.com/lambda/)), you'll be up and running in no time. Alongside webhook and scheduled triggers, Quantaleap will allow you to trigger workflows based on Machine Learning insights.
 :::
 
 ## Concepts
@@ -52,16 +52,16 @@ The first thing you'll do when creating a workflow is configuring a trigger. A t
 
 ### Actions
 
-Actions are the components that bring workflows to life. They contain the functionality that is executed as part of a workflow. Each action is an encapsulated piece of code that interacts with the various integrations that are configured in your environment. Depending on the integration that is consumed, actions can range from reconfiguring resources on cloud platforms to interacting with a CI/CD system to trigger a software release.
+Actions are the components that bring workflows to life. They contain the functionality that is executed as part of a workflow. Each action is an encapsulated piece of code that interacts with the various integrations that are configured in your environment. Depending on the integration that is consumed, actions can range from reconfiguring resources on cloud platforms to interacting with CI/CD systems to trigger a software release.
 
 :::info info
-The actions that are available are integration specific and depend on the functionality that external platforms provide as  a part of their API's.
+The actions that are available are integration specific and depend on the functionality that external platforms provide as part of their API's.
 :::
 
 ### Jobs
 
-Each run of a workflow corresponds to a job. Jobs can be viewed from the web [portal](https://app.quantaleap.eu/jobs) to check workflow activity and execution details of a workflow.
+Each run of a workflow corresponds to a job. Jobs can be viewed from the web [portal](https://app.quantaleap.eu/jobs) to check the activity and execution details of a workflow.
 
 ## Closing Notes
 
-You are ready to delve into the many opportunities of Quantaleap. The usee case library will give a helping hand to start exploring.
+You are ready to start exploring the opportunities of Quantaleap. Our use case library will give you a helping hand.
