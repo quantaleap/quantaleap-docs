@@ -12,30 +12,22 @@ This workflow will send a message to a Slack channel when selected resources do 
 ```mermaid
 stateDiagram-v2
     direction LR
-    Scheduled: Scheduled
-    Shutdown: Shutdown VM(s)
+    Alert: Alert
     Message: Send message
 
     t1 : Trigger
     a1 : Action
-    a2 : Action
 
     Start --> t1
     t1 --> a1
-    a1 --> a2
-    a2 --> End
+    a1 --> End
 
     state t1 {
         direction LR
-        Scheduled
+        Alert
     }
 
     state a1 {
-        direction LR
-        Shutdown
-    }
-
-    state a2 {
         direction LR
         Message
     }
