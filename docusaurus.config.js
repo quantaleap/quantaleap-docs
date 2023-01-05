@@ -50,7 +50,7 @@ const config = {
             }
           },
           routeBasePath: '/',
-          lastVersion: '1.0.0',
+          lastVersion: '0.2.0',
           versions: {
             current: {
               path: '/preview',
