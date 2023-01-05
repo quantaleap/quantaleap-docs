@@ -32,10 +32,16 @@ const sidebars = {
           link: {
             type: 'generated-index',
             title: 'Use cases',
-            description: 'Learn about the most important Docusaurus concepts!',
+            description:
+              'This is our hub to start learning and building workflows!',
             slug: '/use-cases'
           },
-          items: ['use-cases/hello-world']
+          items: [
+            'use-cases/vm-cpu',
+            'use-cases/vm-shut-down',
+            'use-cases/cost-alert',
+            'use-cases/tagging-policy'
+          ]
         }
       ]
     }

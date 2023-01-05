@@ -15,6 +15,12 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
+  // Enable diagram in Markdown feature
+  markdown: {
+    mermaid: true
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'quantaleap', // Usually your GitHub org/user name.
@@ -88,6 +94,14 @@ const config = {
             docId: 'welcome',
             position: 'left',
             label: 'Docs'
+          },
+          {
+            /**
+             * @todo fix: no relative links allowed for versioned docs
+             */
+            href: 'tags',
+            position: 'left',
+            label: 'Topics'
           },
           {
             type: 'docsVersionDropdown',

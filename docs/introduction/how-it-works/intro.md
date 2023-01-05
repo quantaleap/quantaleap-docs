@@ -9,11 +9,11 @@ toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
 
-So, you've checked our [website](https://quantaleap.eu) and the [Getting Started](getting-started/getting-started.md) guide. You might be thinking: "That's cool!, but how do I take this to the next level?". In this document, we're going to take you through the basic concepts of Quantaleap. By the end, you'll be able to put the pieces together and dive deep to build meaningful automations.
+So, you've checked our [website](https://quantaleap.eu) and the [Getting Started](getting-started/intro.md) guide. You might be thinking: "That's cool!, but how do I take this to the next level?". In this document, we're going to take you through the basic concepts of Quantaleap. By the end, you'll be able to put the pieces together and dive deep to build meaningful automations.
 
 ## Overview
 
-At its heart, Quantaleap is a system for building and running `workflows`. A series of tasks (`actions`) that automate a certain process. A workflow will let you organize building blocks that interact with `integrations` to automate complex processes. We can abstract most of the internal workings of Quantaleap to explain the lifecycle of a workflow and how it relates to other components of the platform:
+At its heart, Quantaleap is a system for building and running `workflows`. A series of tasks (or `actions`) that automate a certain process. A workflow will let you organize building blocks that interact with `integrations` to automate complex processes. We can abstract most of the internal workings of Quantaleap to explain the lifecycle of a workflow and how it relates to other components of the platform:
 
 ![Quantaleap Architecture](drawing/design.svg#gh-light-mode-only)
 ![Quantaleap Architecture](drawing/design-dark.svg#gh-dark-mode-only)
@@ -46,9 +46,9 @@ The first thing you'll do when creating a workflow is configuring a trigger. A t
 
 | Name      | Description                                                                                                                                                                                                                                                                                                                                 |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Scheduled | This is a simple and useful way to run a workflow on a recurring basis. Quantaleap will start the workflow at timed intervals.                                                                                                                                                                                                              |
+| Alert     | This trigger allows you to run a workflow based on fixed thresholds in monitoring data. Contrary to the `insight` trigger, no Machine Learning is applied to evaluate the condition of the trigger.                                                                                                                                         |
 | Insight   | This trigger provides a way to dynamically run workflows based on data insights. Quantaleap will analyze your cloud resources to detect performance, consumption and configuration based anomalies. The resulting events can be consumed. This trigger is powerful for creating self governing incident detection and resolution workflows. |
-| Alert     | This trigger allows you to run a workflow based on fixed thresholds in monitoring data. Contrary to the `insight` trigger, no Machine Learning will be applied to evaluate the condition of the trigger.                                                                                                                                    |
+| Scheduled | This is a simple and useful way to run a workflow on a recurring basis. Quantaleap will start the workflow at timed intervals.                                                                                                                                                                                                              |
 | Webhook   | The traditional callback style trigger that starts workflows upon receiving an HTTP payload on a published HTTP endpoint. This trigger is helpful for integrating Quantaleap with external services.                                                                                                                                        |
 
 ### Actions
@@ -65,4 +65,4 @@ Workflow executions are represented by `jobs`. Jobs can be viewed from the [web 
 
 ## Closing Notes
 
-You are ready to start exploring the opportunities of Quantaleap. Our use case library will give you a helping hand.
+You are ready to start exploring the opportunities of Quantaleap. Our use case [library](../../use-cases) will give you a helping hand.
