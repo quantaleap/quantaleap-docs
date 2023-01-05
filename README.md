@@ -7,7 +7,7 @@
 
 The official documentation for our platform services.
 
-[<img src="https://img.shields.io/badge/version-1.0.0-blue.svg">](html/package.json) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/39?label=build) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/40?label=release)
+[<img src="https://img.shields.io/badge/version-0.2.0-blue.svg">](html/package.json) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/39?label=build) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/40?label=release)
 
 </div>
 
