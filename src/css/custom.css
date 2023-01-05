@@ -102,6 +102,12 @@ html[data-theme="dark"] {
   );
 }
 
+/* Tables */
+
+table {
+  text-align: left;
+}
+
 /* Navbar */
 
 .navbar {

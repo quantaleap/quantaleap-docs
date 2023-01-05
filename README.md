@@ -7,7 +7,8 @@
 
 The official documentation for our platform services.
 
-[<img src="https://img.shields.io/badge/version-1.0.0-blue.svg">](html/package.json) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/39?label=build) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/40?label=release) 
+[<img src="https://img.shields.io/badge/version-1.0.0-blue.svg">](html/package.json) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/39?label=build) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/quantaleap/Product%20Development/40?label=release)
+
 </div>
 
 ## How to Run Locally
@@ -15,8 +16,8 @@ The official documentation for our platform services.
 1. Clone this repository: `git clone "https://github.com/quantaleap/quantaleap-docs.git"`
 2. Run the commands :
    - `npm install`
-   - `npm run docusaurus:build`
-   - `npm run docusaurus:serve`
+   - `npm run docusaurus build`
+   - `npm run docusaurus serve`
 3. The site will run locally on `http://localhost:3000`
 
 ## How To Contribute

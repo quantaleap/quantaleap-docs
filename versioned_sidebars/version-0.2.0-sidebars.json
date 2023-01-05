@@ -1,0 +1,30 @@
+{
+  "tutorialSidebar": [
+    "welcome",
+    "getting-started/intro",
+    {
+      "type": "category",
+      "label": "Introduction",
+      "items": [
+        "introduction/why-quantaleap/intro",
+        "introduction/how-it-works/intro",
+        {
+          "type": "category",
+          "label": "Use cases",
+          "link": {
+            "type": "generated-index",
+            "title": "Use cases",
+            "description": "This is our hub to start learning and building workflows!",
+            "slug": "/use-cases"
+          },
+          "items": [
+            "use-cases/vm-cpu",
+            "use-cases/vm-shut-down",
+            "use-cases/cost-alert",
+            "use-cases/tagging-policy"
+          ]
+        }
+      ]
+    }
+  ]
+}

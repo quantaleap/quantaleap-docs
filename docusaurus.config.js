@@ -6,13 +6,20 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  // General configuration options
   title: 'Quantaleap',
-  tagline: 'The cloud-native IT operations platform',
+  tagline: 'The Cloud-Native IT operations platform',
   url: 'https://quantaleap.eu',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
+
+  // Enable diagram in Markdown feature
+  markdown: {
+    mermaid: true
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -33,11 +40,21 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          // enable "Edit page" feature
+          editUrl: (permalink) => {
+            const baseUrl = 'https://github.com/quantaleap/quantaleap-docs'
+            if (permalink.version !== 'current') {
+              return `${baseUrl}/tree/main/docs/${permalink.docPath}`
+            } else {
+              return baseUrl
+            }
+          },
           routeBasePath: '/',
-          lastVersion: '1.0.0',
+          lastVersion: '0.2.0',
           versions: {
             current: {
-              label: 'draft'
+              path: '/preview',
+              label: 'preview'
             }
           },
           sidebarPath: require.resolve('./sidebars.js'),
@@ -65,9 +82,11 @@ const config = {
       },
       navbar: {
         logo: {
+          href: 'https://quantaleap.eu',
           alt: 'Quantaleap Logo',
           src: 'img/logo-light.png',
-          srcDark: 'img/logo-dark.png'
+          srcDark: 'img/logo-dark.png',
+          target: '_self'
         },
         items: [
           {
@@ -75,6 +94,14 @@ const config = {
             docId: 'welcome',
             position: 'left',
             label: 'Docs'
+          },
+          {
+            /**
+             * @todo fix: no relative links allowed for versioned docs
+             */
+            href: 'tags',
+            position: 'left',
+            label: 'Topics'
           },
           {
             type: 'docsVersionDropdown',
@@ -87,6 +114,11 @@ const config = {
           }
         ]
       },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true
+        }
+      },
       footer: {
         style: 'dark',
         links: [
@@ -95,7 +127,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/getting-started'
+                to: '/getting-started/intro'
               }
             ]
           },
@@ -104,7 +136,7 @@ const config = {
             items: [
               {
                 label: 'Reddit',
-                to: 'https://reddit/r/quantaleap'
+                to: 'https://reddit.com/r/quantaleap'
               },
               {
                 label: 'Discord',
@@ -122,22 +154,6 @@ const config = {
               {
                 label: 'GitHub',
                 to: 'https://github.com/quantaleap'
-              }
-            ]
-          },
-          {
-            title: 'Systems',
-            items: [
-              {
-                html: `<iframe 
-                src="https://quantaleap.instatus.com/embed-status/b778cf87/dark-sm" 
-                width="230" 
-                height="61" 
-                frameBorder="0" 
-                scrolling="no" 
-                style="border: none;"
-              >
-              </iframe>`
               }
             ]
           }
