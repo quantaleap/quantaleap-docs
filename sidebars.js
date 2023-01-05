@@ -30,7 +30,10 @@ const sidebars = {
           type: 'category',
           label: 'Use cases',
           link: {
-            type: 'generated-index'
+            type: 'generated-index',
+            title: 'Use cases',
+            description: 'Learn about the most important Docusaurus concepts!',
+            slug: '/use-cases'
           },
           items: ['use-cases/hello-world']
         }

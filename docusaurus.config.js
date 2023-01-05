@@ -6,6 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  // General configuration options
   title: 'Quantaleap',
   tagline: 'The Cloud-Native IT operations platform',
   url: 'https://quantaleap.eu',
@@ -75,9 +76,11 @@ const config = {
       },
       navbar: {
         logo: {
+          href: 'https://quantaleap.eu',
           alt: 'Quantaleap Logo',
           src: 'img/logo-light.png',
-          srcDark: 'img/logo-dark.png'
+          srcDark: 'img/logo-dark.png',
+          target: '_self'
         },
         items: [
           {
@@ -85,11 +88,6 @@ const config = {
             docId: 'welcome',
             position: 'left',
             label: 'Docs'
-          },
-          {
-            to: `/tags`,
-            label: 'Topics',
-            position: 'left'
           },
           {
             type: 'docsVersionDropdown',
@@ -142,22 +140,6 @@ const config = {
               {
                 label: 'GitHub',
                 to: 'https://github.com/quantaleap'
-              }
-            ]
-          },
-          {
-            title: 'Systems',
-            items: [
-              {
-                html: `<iframe 
-                src="https://quantaleap.instatus.com/embed-status/b778cf87/dark-sm" 
-                width="230" 
-                height="61" 
-                frameBorder="0" 
-                scrolling="no" 
-                style="border: none;"
-              >
-              </iframe>`
               }
             ]
           }
