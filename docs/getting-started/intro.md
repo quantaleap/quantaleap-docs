@@ -41,7 +41,7 @@ Once the integration has been succesfully configured, you can get started. Visit
 2. Complete the form with the applicable filters to finetune which resources should be audited.
 3. Save the workflow
 
-By clicking the exclamation mark icon in the top right corner of the trigger node, you can view evaluation logs. This information can be used to debug specific tasks within the workflow.
+By clicking the exclamation mark in the top right corner of the trigger node, you can view evaluation logs. This information can be used to debug specific tasks within the workflow.
 
 You can monitor the workflow by visiting **Workflows** > `your workflow`. This summary provides an overview of job executions and results.
 

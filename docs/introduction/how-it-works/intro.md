@@ -31,7 +31,7 @@ Third-party services, including cloud platforms and SaaS tools, can be connected
 - Read information about resources within cloud platforms to allow our `Data Platform` to provide analytics
 - Interact with API's to administer resources on third-party platforms
 
-All integrations are set up and configured from the [web portal](https://app.quantaleap.eu/settings/integrations). Once completed, the integrations can be consumed within workflows. We define 4 categories of integrations:
+All integrations are set up and configured from the [web portal](https://app.quantaleap.eu/settings/integrations). Once completed, the integrations can be used within workflows. We define 4 categories of integrations:
 
 | Name             | Description                                                           |
 | ---------------- | --------------------------------------------------------------------- |
@@ -44,12 +44,12 @@ All integrations are set up and configured from the [web portal](https://app.qua
 
 The first thing you'll do when creating a workflow is configuring a trigger. A trigger defines criteria to be met for a workflow to be executed. Quantaleap will continuously evaluate these conditions and start the workflow once they are met. Triggers can come from a variety of sources:
 
-| Name      | Description                                                                                                                                                                                                                                                                                                                           |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Scheduled | This is a simple and useful way to run a workflow on a recurring basis. Quantaleap will start the workflow at timed intervals.                                                                                                                                                                                                        |
-| Insight   | This trigger provides a way to dynamically run workflows based on data insights. Quantaleap will analyze your cloud resources to detect performance, consumption and configuration anomalies. The resulting events can be consumed. This trigger is powerful for creating self governing incident detection and resolution workflows. |
-| Alert     | This trigger allows you to run a workflow based on fixed thresholds in monitoring data. Contrary to the `insight` trigger, Quantaleap will not apply Machine Learning to evaluate the condition of the trigger.                                                                                                                       |
-| Webhook   | The traditional callback style trigger that starts workflows upon receiving an HTTP payload on a published HTTP endpoint. This trigger is helpful for integrating Quantaleap with external services.                                                                                                                                  |
+| Name      | Description                                                                                                                                                                                                                                                                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Scheduled | This is a simple and useful way to run a workflow on a recurring basis. Quantaleap will start the workflow at timed intervals.                                                                                                                                                                                                              |
+| Insight   | This trigger provides a way to dynamically run workflows based on data insights. Quantaleap will analyze your cloud resources to detect performance, consumption and configuration based anomalies. The resulting events can be consumed. This trigger is powerful for creating self governing incident detection and resolution workflows. |
+| Alert     | This trigger allows you to run a workflow based on fixed thresholds in monitoring data. Contrary to the `insight` trigger, no Machine Learning will be applied to evaluate the condition of the trigger.                                                                                                                                    |
+| Webhook   | The traditional callback style trigger that starts workflows upon receiving an HTTP payload on a published HTTP endpoint. This trigger is helpful for integrating Quantaleap with external services.                                                                                                                                        |
 
 ### Actions
 
@@ -61,7 +61,7 @@ The actions that are available are integration specific and depend on the functi
 
 ### Jobs
 
-Workflow executions are represented by **jobs**. Jobs can be viewed from the [web portal](https://app.quantaleap.eu/jobs) to check the activity and execution details of a workflow.
+Workflow executions are represented by `jobs`. Jobs can be viewed from the [web portal](https://app.quantaleap.eu/jobs) to check the activity and execution details of a workflow.
 
 ## Closing Notes
 

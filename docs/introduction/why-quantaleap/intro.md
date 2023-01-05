@@ -14,4 +14,4 @@ Quantaleap is a serverless automation platform designed for cloud engineering te
 
 - 🔗 Connects to multiple cloud platforms & SaaS tools
 - 🧠 Uses Machine Learning to predict incidents in cloud environments for a wide variety of use cases
-- ⚡️ Provides workflows that trigger on `data insights`, based on fixed a `schedule` or via `webhooks`
+- ⚡️ Provides workflows that trigger on `data insights`, based on a fixed `schedule` or via `webhooks`
