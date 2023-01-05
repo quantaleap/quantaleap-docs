@@ -12,7 +12,7 @@ This workflow will send a message to a Slack channel when the accumulated cost o
 ```mermaid
 stateDiagram-v2
     direction LR
-    Alert: Cost alert
+    Alert: Alert
     Shutdown: Shutdown VM(s)
     Message: Send message
 
