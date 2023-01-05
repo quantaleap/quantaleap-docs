@@ -10,8 +10,8 @@ As DevOps engineers, we understand how hard it can be to maintain cloud infrastr
 
 ## Quick Description
 
-Quantaleap is a serverless automation platform designed for cloud engineering teams. It streamlines IT operations to help you manage cloud infrastructures quickly and effectively:
+Quantaleap is a serverless automation platform designed for cloud engineering teams. It streamlines IT operations to help you manage cloud infrastructures, quickly and effectively:
 
 - 🔗 Connects to multiple cloud platforms & SaaS tools
 - 🧠 Uses Machine Learning to predict incidents in cloud environments for a wide variety of use cases
-- ⚡️ Provides workflows that trigger on `data insights`, based on fixed `schedules` or via `webhooks`
+- ⚡️ Provides workflows that trigger on `data insights`, based on fixed a `schedule` or via `webhooks`
