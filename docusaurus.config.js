@@ -127,7 +127,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/getting-started'
+                to: '/getting-started/intro'
               }
             ]
           },
