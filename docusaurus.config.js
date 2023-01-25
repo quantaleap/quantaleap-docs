@@ -96,10 +96,15 @@ const config = {
             label: 'Docs'
           },
           {
+            to: 'blog',
+            label: 'Blog',
+            position: 'left'
+          },
+          {
             /**
              * @todo fix: no relative links allowed for versioned docs
              */
-            href: 'tags',
+            href: '/tags',
             position: 'left',
             label: 'Topics'
           },
