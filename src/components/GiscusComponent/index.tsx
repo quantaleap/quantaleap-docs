@@ -17,7 +17,7 @@ export default function GiscusComponent() {
       reactionsEnabled="1"
       emitMetadata="1"
       inputPosition="top"
-      theme={colorMode}
+      theme="https://docs.quantaleap.eu/css/giscus_theme.css"
       lang="en"
       loading="lazy"
     />
